@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/myDrawerLayout">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_Flip"
+        app:layout_constraintStart_toEndOf="@+id/button_Flip">
+
+
+        <TextView
+            android:id="@+id/textView_Status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/touch_area"
+            android:layout_marginBottom="140dp"
+            android:text="TextView"
+            android:textSize="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_UpSeekbar"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/textView_Respond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/touch_area"
+            android:layout_marginEnd="16dp"
+            android:text="HighTP"
+            android:textSize="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/tv_UpSeekbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/button_Start"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="click"
+            android:text="start"
+            app:layout_constraintBaseline_toBaselineOf="@+id/button_Send"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="MissingConstraints,OnClick" />
+
+        <ImageView
+            android:id="@+id/test_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/touch_area"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <SeekBar
+            android:id="@+id/seekbar_Up"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_UpSeekbar"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_UpSeekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="41dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView_Status"
+            tools:ignore="MissingConstraints" />
+
+        <SeekBar
+            android:id="@+id/seekBar_down"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_DownSeekbar"
+            tools:ignore="MissingConstraints" />
+
+
+        <TextView
+            android:id="@+id/tv_DownSeekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekbar_Up"
+            tools:ignore="MissingConstraints" />
+
+        <EditText
+            android:id="@+id/editText_Input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="11dp"
+            android:layout_marginBottom="7dp"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_Send"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/button_Send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="7dp"
+            android:text="Send"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/button_Start"
+            tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="306dp" />
+
+        <SurfaceView
+            android:id="@+id/surfaceview"
+            android:layout_width="140dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView_Status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            tools:ignore="MissingConstraints" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="240dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:spinnerMode="dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="50dp"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:spinnerMode="dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="捲積"
+                tools:ignore="MissingConstraints"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:id="@+id/button_Flip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Flip"
+                tools:ignore="MissingConstraints"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+
+
+    </com.google.android.material.navigation.NavigationView>
+
+</androidx.drawerlayout.widget.DrawerLayout>
