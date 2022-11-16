@@ -14,3 +14,7 @@
 
 ### 不同上色畫面
 <img src="https://user-images.githubusercontent.com/32964867/202074358-f0d6cb56-1c19-483c-8491-ac2fc98a55f0.gif" width="20%" height="20%" />
+
+###畫面捲積
+
+<img src="https://user-images.githubusercontent.com/32964867/202077751-7bd5c57b-a87f-4d8e-b98a-ee324124f0b1.gif" width="20%" height="20%" />
