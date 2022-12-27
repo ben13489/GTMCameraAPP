@@ -423,13 +423,15 @@ public class MainActivity<tvCount> extends AppCompatActivity {
                             Bitmap destbitmap = Bitmap.createBitmap(Screen_draw_size, Screen_draw_size, Bitmap.Config.ARGB_8888);
                             /**最底層畫布*/
                             Mat srcMat = new Mat();
+
                             Utils.bitmapToMat(destbitmap, srcMat);
                             //Mat srcMat = new Mat(384, 384, CvType.CV_8UC3);
                             srcMat.setTo(new Scalar(255, 255, 255));
 
                             /**第二層畫布*/
-                            Mat dst = new Mat();
-                            Mat rgba = new Mat();
+
+                            Mat srcMat2 = new Mat();
+                            Mat srcMat3 = new Mat();
                             Size size1 = new Size(16, 16);
                             Size size2 = new Size(64, 64);//16-64cu
                             //Size size3 = new Size(128, 128);
@@ -443,35 +445,40 @@ public class MainActivity<tvCount> extends AppCompatActivity {
                                     int RGB = rematrix[j][i];//& 0xff ;
                                     /**宽度16*16像素，-1填滿*/
                                     //Imgproc.rectangle(srcMat, new Point(0+i*24,0+j*24), new Point(0+(i+1)*24, 0+(j+1)*24), new Scalar((j*16+i+1),(j*16+i+1),(j*16+i+1),255), -1);
-                                    Imgproc.rectangle(srcMat, new Point(0 + i * draw_X, 0 + j * draw_Y), new Point(0 + (i + 1) * draw_X, 0 + (j + 1) * draw_Y), new Scalar(RGB, RGB, RGB, 255), -1);
+                                    //Imgproc.rectangle(srcMat, new Point(i * draw_X, j * draw_Y), new Point(((i + 1) * draw_X -1), ((j + 1) * draw_Y -1)), new Scalar(RGB, RGB, RGB, 255), -1);
+                                    Imgproc.rectangle(srcMat, new Point( i*2 , j*2 ),new Point( ((i+1)*2-1) , ((j+1)*2-1) ), new Scalar(RGB, RGB, RGB, 255), -1);
                                 }
                             }
 
 
                             /**插補選擇*/
                             if (spinner_interpolation == 0) {
-                                Imgproc.resize(srcMat, srcMat, size1);
-                                Imgproc.resize(srcMat, srcMat, size2, Imgproc.INTER_CUBIC);
-                                Imgproc.resize(srcMat, srcMat, size5, Imgproc.INTER_NEAREST);
+                                Imgproc.resize(srcMat, srcMat3, size1,Imgproc.INTER_NEAREST);
+                                //Imgproc.resize(srcMat2, srcMat, size5);
+                                Imgproc.resize(srcMat3, srcMat, size5, Imgproc.INTER_LINEAR);
+                                //Imgproc.resize(srcMat3, srcMat, size5, Imgproc.INTER_NEAREST);
 
                             } else {
 
 
                             }
+
+
+
                             /**捲積選擇*/
-                            if (i == 1) {
+                            /*if (i == 1) {
                                 Utils.matToBitmap(srcMat, destbitmap);
                                 destbitmap = sharpenImageAmeliorate(destbitmap);
                                 Utils.bitmapToMat(destbitmap, srcMat);
-                            }
+                            }*/
 
 
                             /**上色需要RGBA會轉成RGB所以要對調*/
 
-                            Imgproc.cvtColor(srcMat, srcMat, Imgproc.COLOR_RGBA2RGB);
+                            //Imgproc.cvtColor(srcMat, srcMat, Imgproc.COLOR_RGBA2RGB);
                             /**上色*/
 
-                            if (spinner_color == 0) {
+                           /* if (spinner_color == 0) {
                                 Imgproc.applyColorMap(srcMat, srcMat, Imgproc.COLORMAP_INFERNO);
                             } else if (spinner_color == 1) {
                                 Imgproc.applyColorMap(srcMat, srcMat, Imgproc.COLORMAP_JET);
@@ -479,22 +486,22 @@ public class MainActivity<tvCount> extends AppCompatActivity {
                                 Imgproc.applyColorMap(srcMat, srcMat, Imgproc.COLORMAP_COOL);
                             } else if (spinner_color == 3) {
                                 Imgproc.applyColorMap(srcMat, srcMat, Imgproc.COLORMAP_HOT);
-                            }
+                            }*/
 
 
                             /**apply後RGB會轉成GBR所以要對調RGB2BGR*/
-                            Imgproc.cvtColor(srcMat, srcMat, Imgproc.COLOR_BGR2RGBA);
+                            //Imgproc.cvtColor(srcMat, srcMat, Imgproc.COLOR_BGR2RGBA);
 
                             /**找出最高溫方框*/
-                            Imgproc.rectangle(srcMat, new Point(0 + (high_place % 16) * draw_X, 0 + (high_place / 16) * draw_Y), new Point(0 + ((high_place % 16) + 1) * draw_X, 0 + ((high_place / 16) + 1) * draw_Y), new Scalar(255, 0, 0, 255), 2);
+                            //Imgproc.rectangle(srcMat, new Point(0 + (high_place % 16) * draw_X, 0 + (high_place / 16) * draw_Y), new Point(0 + ((high_place % 16) + 1) * draw_X, 0 + ((high_place / 16) + 1) * draw_Y), new Scalar(255, 0, 0, 255), 2);
 
 
                             /**翻轉check*/
-                            if (flip_count == 0) {
+                            /*if (flip_count == 0) {
                                 Core.flip(srcMat, srcMat, -1);
-                            }
+                            }*/
                             /**點擊時畫綠色方框並顯示格子內溫度*/
-                            if (RawX >= 0) {
+                           /* if (RawX >= 0) {
                                 Imgproc.rectangle(srcMat, new Point(0 + (RawX / draw_X) * draw_X, 0 + ((RawY) / draw_Y) * draw_Y), new Point(0 + ((RawX / draw_X) + 1) * draw_X, 0 + (((RawY) / draw_Y) + 1) * draw_Y), new Scalar(0, 255, 0, 255), 2);
                                 float touch_temp = temperature1[(RawX / draw_X) + (RawY / draw_Y) * 16];
 
@@ -503,11 +510,11 @@ public class MainActivity<tvCount> extends AppCompatActivity {
                                 }
 
                                 /**授權狀態改成溫度*/
-                                tvStatus.setText(Float.toString(touch_temp));
+                               /* tvStatus.setText(Float.toString(touch_temp));
                                 tvStatus.setTextColor(Color.rgb(0, 255, 0));
 
 
-                            }
+                            }*/
 
 
                             /**將mat轉為Bitmap畫圖*/

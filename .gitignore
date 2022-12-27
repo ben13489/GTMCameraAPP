@@ -12,10 +12,16 @@
 /captures
 .externalNativeBuild
 .cxx
+
+
 local.properties
 
 # Project exclude paths
-/sdk
-#/sdk/build/
-#/sdk/build/intermediates/javac/debug/classes/
+/sdk/build/
+/sdk/build/intermediates/javac/debug/classes/
+/sdk/etc
+/sdk/java
+/sdk/libcxx_helper
+/sdk/native
+
 
